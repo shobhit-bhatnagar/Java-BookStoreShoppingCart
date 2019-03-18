@@ -52,5 +52,14 @@ public class ShoppingCart {
   }
   setOrderTotal(dblTotal);
  }
+ 
+ public void deleteCartItem(int index)
+ {
+	 if(index < this.cartItems.size())
+	 {
+		 this.cartItems.remove(index);
+	 }
+	 
+ }
 
 }

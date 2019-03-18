@@ -82,6 +82,24 @@ public class CartController extends HttpServlet {
 	 // Add this item and quantity to the ShoppingCart
    shoppingCart.addCartItem(existingBook, quantity);
   }
+  
+  protected void deleteFromCart(HttpServletRequest request, HttpServletResponse response)
+  {
+	  HttpSession session = request.getSession();
+	   String idStr = request.getParameter("index");
+	   int index = Integer.parseInt(idStr);
+	   ShoppingCart shoppingCart  = null;
+	   
+	   Object objCartBean = session.getAttribute("cart");
+
+	   if(objCartBean!=null) {
+	    shoppingCart = (ShoppingCart) objCartBean ;
+	   } else {
+	    shoppingCart = new ShoppingCart();
+	    session.setAttribute("cart", shoppingCart);
+	   }
+	   shoppingCart.deleteCartItem(index);
+  }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
